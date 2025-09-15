@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Calculadora IMC</string>
+
+    <!-- Login y Register -->
+    <string name="login">Iniciar Sesión</string>
+    <string name="register">Registrarse</string>
+    <string name="username">Nombre de Usuario</string>
+    <string name="email">Correo Electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="confirm_password">Confirmar Contraseña</string>
+    <string name="no_account_register">¿No tienes cuenta? Regístrate</string>
+    <string name="already_have_account">¿Ya tienes cuenta? Inicia sesión</string>
+    <string name="login_successful">Inicio de sesión exitoso</string>
+    <string name="login_failed">Error al iniciar sesión</string>
+    <string name="registration_successful">Registro exitoso</string>
+    <string name="registration_failed">Error en el registro</string>
+    <string name="passwords_not_match">Las contraseñas no coinciden</string>
+    <string name="password_too_short">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="username_too_short">El nombre de usuario debe tener al menos 3 caracteres</string>
+    <string name="username_already_exists">Este nombre de usuario ya existe</string>
+
+    <!-- Main Activity -->
+    <string name="welcome">Bienvenido</string>
+    <string name="bmi_calculator">Calculadora de IMC</string>
+    <string name="height_cm">Altura (cm)</string>
+    <string name="weight_kg">Peso (kg)</string>
+    <string name="calculate">Calcular</string>
+    <string name="history">Historial</string>
+    <string name="logout">Cerrar Sesión</string>
+    <string name="your_bmi">Tu IMC</string>
+    <string name="category">Categoría</string>
+    <string name="fill_all_fields">Por favor completa todos los campos</string>
+    <string name="invalid_values">Por favor ingresa valores válidos</string>
+
+    <!-- BMI Categories -->
+    <string name="underweight">Bajo peso</string>
+    <string name="normal_weight">Peso normal</string>
+    <string name="overweight">Sobrepeso</string>
+    <string name="obese">Obesidad</string>
+
+    <!-- History -->
+    <string name="bmi_history">Historial de IMC</string>
+    <string name="bmi_history_of">Historial de IMC de</string>
+    <string name="no_records">No hay registros disponibles</string>
+    <string name="user">Usuario</string>
+    <string name="height">Altura</string>
+    <string name="weight">Peso</string>
+    <string name="bmi">IMC</string>
+</resources>
