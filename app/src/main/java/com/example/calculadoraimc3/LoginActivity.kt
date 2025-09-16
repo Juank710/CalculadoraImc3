@@ -18,6 +18,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var btnLogin: Button
     private lateinit var btnRegister: Button
     private lateinit var tvSwitchToRegister: TextView
+    private lateinit var tvForgotPassword: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +30,21 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         // Verificar si ya hay un usuario autenticado
-        if (auth.currentUser != null) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-            return
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            if (currentUser.isEmailVerified) {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+                return
+            } else {
+                // Usuario no verificado, ir a pantalla de verificación
+                val intent = Intent(this, EmailVerificationActivity::class.java)
+                intent.putExtra("email", currentUser.email)
+                intent.putExtra("username", currentUser.displayName)
+                startActivity(intent)
+                finish()
+                return
+            }
         }
 
         initViews()
@@ -45,6 +57,7 @@ class LoginActivity : AppCompatActivity() {
         btnLogin = findViewById(R.id.btnLogin)
         btnRegister = findViewById(R.id.btnRegister)
         tvSwitchToRegister = findViewById(R.id.tvSwitchToRegister)
+        tvForgotPassword = findViewById(R.id.tvForgotPassword)
     }
 
     private fun setupClickListeners() {
@@ -59,6 +72,10 @@ class LoginActivity : AppCompatActivity() {
         tvSwitchToRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+
+        tvForgotPassword.setOnClickListener {
+            showForgotPasswordDialog()
+        }
     }
 
     private fun loginUser() {
@@ -70,14 +87,50 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
+        btnLogin.isEnabled = false
+
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
+                btnLogin.isEnabled = true
+
                 if (task.isSuccessful) {
-                    Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
+                    val user = auth.currentUser
+
+                    if (user?.isEmailVerified == true) {
+                        Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    } else {
+                        Toast.makeText(this, getString(R.string.please_verify_email), Toast.LENGTH_LONG).show()
+
+                        // Ir a la pantalla de verificación
+                        val intent = Intent(this, EmailVerificationActivity::class.java)
+                        intent.putExtra("email", user?.email)
+                        intent.putExtra("username", user?.displayName)
+                        startActivity(intent)
+                        finish()
+                    }
                 } else {
                     Toast.makeText(this, getString(R.string.login_failed) + ": ${task.exception?.message}",
+                        Toast.LENGTH_LONG).show()
+                }
+            }
+    }
+
+    private fun showForgotPasswordDialog() {
+        val email = etEmail.text.toString().trim()
+
+        if (email.isEmpty()) {
+            Toast.makeText(this, getString(R.string.enter_email_reset), Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, getString(R.string.password_reset_sent), Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this, getString(R.string.password_reset_failed) + ": ${task.exception?.message}",
                         Toast.LENGTH_LONG).show()
                 }
             }

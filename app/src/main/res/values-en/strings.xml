@@ -19,6 +19,30 @@
     <string name="password_too_short">Password must be at least 6 characters</string>
     <string name="username_too_short">Username must be at least 3 characters</string>
     <string name="username_already_exists">This username already exists</string>
+    <string name="forgot_password">Forgot your password?</string>
+
+    <!-- Email verification -->
+    <string name="verify_your_email">Verify Your Email</string>
+    <string name="verification_message">We\'ve sent a verification link to:\n\n%1$s\n\nPlease check your email and click the link to verify your account.</string>
+    <string name="check_verification">Check Verification</string>
+    <string name="resend_email">Resend Email</string>
+    <string name="back_to_login">Back to Login</string>
+    <string name="check_spam_folder">If you can\'t find the email, please check your spam folder</string>
+    <string name="email_verification_icon">Email verification icon</string>
+    <string name="verification_email_sent">Verification email sent. Please check your inbox.</string>
+    <string name="verification_email_resent">Verification email resent</string>
+    <string name="failed_send_verification">Failed to send verification email</string>
+    <string name="failed_resend_verification">Failed to resend verification email</string>
+    <string name="email_verified_success">Email verified successfully!</string>
+    <string name="email_not_verified_yet">Email has not been verified yet</string>
+    <string name="error_checking_verification">Error checking email verification status</string>
+    <string name="please_verify_email">Please verify your email before continuing</string>
+    <string name="creating_account">Creating account...</string>
+
+    <!-- Password recovery -->
+    <string name="enter_email_reset">Enter your email to reset password</string>
+    <string name="password_reset_sent">Password reset email has been sent</string>
+    <string name="password_reset_failed">Failed to send password reset email</string>
 
     <!-- Main Activity -->
     <string name="welcome">Welcome</string>

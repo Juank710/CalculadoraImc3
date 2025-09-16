@@ -84,30 +84,66 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
+        // Deshabilitar el botón para evitar múltiples registros
+        btnRegister.isEnabled = false
+        Toast.makeText(this, getString(R.string.creating_account), Toast.LENGTH_SHORT).show()
+
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Actualizar el perfil del usuario con el nombre de usuario
                     val user = auth.currentUser
+
+                    // Actualizar el perfil del usuario con el nombre de usuario
                     val profileUpdates = UserProfileChangeRequest.Builder()
                         .setDisplayName(username)
                         .build()
 
                     user?.updateProfile(profileUpdates)?.addOnCompleteListener { profileTask ->
                         if (profileTask.isSuccessful) {
-                            // Guardar el usuario en la base de datos local
-                            database.insertUser(username, email)
-                            Toast.makeText(this, getString(R.string.registration_successful), Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this, MainActivity::class.java))
-                            finish()
+                            // Enviar email de verificación
+                            user.sendEmailVerification()
+                                .addOnCompleteListener { emailTask ->
+                                    if (emailTask.isSuccessful) {
+                                        // Guardar el usuario en la base de datos local
+                                        database.insertUser(username, email)
+
+                                        Toast.makeText(
+                                            this,
+                                            getString(R.string.verification_email_sent),
+                                            Toast.LENGTH_LONG
+                                        ).show()
+
+                                        // Ir a la actividad de verificación
+                                        val intent = Intent(this, EmailVerificationActivity::class.java)
+                                        intent.putExtra("email", email)
+                                        intent.putExtra("username", username)
+                                        startActivity(intent)
+                                        finish()
+                                    } else {
+                                        Toast.makeText(
+                                            this,
+                                            getString(R.string.failed_send_verification) + ": ${emailTask.exception?.message}",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                        btnRegister.isEnabled = true
+                                    }
+                                }
                         } else {
-                            Toast.makeText(this, getString(R.string.registration_failed) + ": ${profileTask.exception?.message}",
-                                Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                this,
+                                getString(R.string.registration_failed) + ": ${profileTask.exception?.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            btnRegister.isEnabled = true
                         }
                     }
                 } else {
-                    Toast.makeText(this, getString(R.string.registration_failed) + ": ${task.exception?.message}",
-                        Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this,
+                        getString(R.string.registration_failed) + ": ${task.exception?.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    btnRegister.isEnabled = true
                 }
             }
     }

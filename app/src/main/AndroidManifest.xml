@@ -34,6 +34,11 @@
             android:exported="false" />
 
         <activity
+            android:name=".EmailVerificationActivity"
+            android:exported="false"
+            android:parentActivityName=".LoginActivity" />
+
+        <activity
             android:name=".HistoryActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />

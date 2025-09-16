@@ -19,6 +19,30 @@
     <string name="password_too_short">La contraseña debe tener al menos 6 caracteres</string>
     <string name="username_too_short">El nombre de usuario debe tener al menos 3 caracteres</string>
     <string name="username_already_exists">Este nombre de usuario ya existe</string>
+    <string name="forgot_password">¿Olvidaste tu contraseña?</string>
+
+    <!-- Verificación de email -->
+    <string name="verify_your_email">Verifica tu Email</string>
+    <string name="verification_message">Hemos enviado un enlace de verificación a:\n\n%1$s\n\nPor favor, revisa tu correo y haz clic en el enlace para verificar tu cuenta.</string>
+    <string name="check_verification">Verificar Email</string>
+    <string name="resend_email">Reenviar Email</string>
+    <string name="back_to_login">Volver al Login</string>
+    <string name="check_spam_folder">Si no encuentras el email, revisa tu carpeta de spam</string>
+    <string name="email_verification_icon">Ícono de verificación de email</string>
+    <string name="verification_email_sent">Email de verificación enviado. Revisa tu correo.</string>
+    <string name="verification_email_resent">Email de verificación reenviado</string>
+    <string name="failed_send_verification">Error al enviar email de verificación</string>
+    <string name="failed_resend_verification">Error al reenviar email de verificación</string>
+    <string name="email_verified_success">¡Email verificado exitosamente!</string>
+    <string name="email_not_verified_yet">El email aún no ha sido verificado</string>
+    <string name="error_checking_verification">Error al verificar el estado del email</string>
+    <string name="please_verify_email">Por favor verifica tu email antes de continuar</string>
+    <string name="creating_account">Creando cuenta...</string>
+
+    <!-- Recuperación de contraseña -->
+    <string name="enter_email_reset">Ingresa tu email para recuperar la contraseña</string>
+    <string name="password_reset_sent">Se ha enviado un email para restablecer tu contraseña</string>
+    <string name="password_reset_failed">Error al enviar email de recuperación</string>
 
     <!-- Main Activity -->
     <string name="welcome">Bienvenido</string>

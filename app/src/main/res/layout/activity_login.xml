@@ -44,7 +44,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:hint="@string/password">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -54,6 +54,19 @@
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/forgot_password"
+        android:textSize="14sp"
+        android:textColor="#2196F3"
+        android:gravity="end"
+        android:padding="8dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true" />
 
     <Button
         android:id="@+id/btnLogin"

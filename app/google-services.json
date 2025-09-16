@@ -12,7 +12,12 @@
           "package_name": "com.example.calculadoraimc3"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "488328240997-1p4bbjf2nvtms7j7t6vgpnpbvncr6qar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCBEehoCo2tuMZA7MTj52kFg35sVfkeJSw"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488328240997-1p4bbjf2nvtms7j7t6vgpnpbvncr6qar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
