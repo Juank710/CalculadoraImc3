@@ -78,13 +78,11 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        // Verificar si el nombre de usuario ya existe
         if (database.isUsernameExists(username)) {
             Toast.makeText(this, getString(R.string.username_already_exists), Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Deshabilitar el botón para evitar múltiples registros
         btnRegister.isEnabled = false
         Toast.makeText(this, getString(R.string.creating_account), Toast.LENGTH_SHORT).show()
 
@@ -100,11 +98,9 @@ class RegisterActivity : AppCompatActivity() {
 
                     user?.updateProfile(profileUpdates)?.addOnCompleteListener { profileTask ->
                         if (profileTask.isSuccessful) {
-                            // Enviar email de verificación
                             user.sendEmailVerification()
                                 .addOnCompleteListener { emailTask ->
                                     if (emailTask.isSuccessful) {
-                                        // Guardar el usuario en la base de datos local
                                         database.insertUser(username, email)
 
                                         Toast.makeText(
@@ -113,7 +109,7 @@ class RegisterActivity : AppCompatActivity() {
                                             Toast.LENGTH_LONG
                                         ).show()
 
-                                        // Ir a la actividad de verificación
+                                        //actividad de verificación
                                         val intent = Intent(this, EmailVerificationActivity::class.java)
                                         intent.putExtra("email", email)
                                         intent.putExtra("username", username)

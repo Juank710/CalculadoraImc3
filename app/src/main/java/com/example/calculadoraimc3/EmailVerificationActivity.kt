@@ -36,7 +36,7 @@ class EmailVerificationActivity : AppCompatActivity() {
         setupClickListeners()
         updateUI()
 
-        // Comenzar verificación automática
+        // verificación automática
         startAutoCheck()
     }
 
@@ -121,13 +121,13 @@ class EmailVerificationActivity : AppCompatActivity() {
                 if (user != null) {
                     user.reload().addOnCompleteListener { reloadTask ->
                         if (reloadTask.isSuccessful && user.isEmailVerified) {
-                            // Email verificado, ir a MainActivity
+                            // Email verificado
                             Toast.makeText(this@EmailVerificationActivity,
                                 getString(R.string.email_verified_success), Toast.LENGTH_SHORT).show()
                             startActivity(Intent(this@EmailVerificationActivity, MainActivity::class.java))
                             finish()
                         } else {
-                            // Seguir verificando cada 3 segundos
+                            // Seguir verificando
                             handler.postDelayed(this, 3000)
                         }
                     }

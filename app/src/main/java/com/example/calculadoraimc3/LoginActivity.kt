@@ -37,7 +37,6 @@ class LoginActivity : AppCompatActivity() {
                 finish()
                 return
             } else {
-                // Usuario no verificado, ir a pantalla de verificación
                 val intent = Intent(this, EmailVerificationActivity::class.java)
                 intent.putExtra("email", currentUser.email)
                 intent.putExtra("username", currentUser.displayName)
